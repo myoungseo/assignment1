@@ -13,6 +13,16 @@ def main():
 
 def load_songs(FILENAME):
     """Load songs from csv file"""
+    songs = []
+    try:
+        with open(FILENAME,'r') as file:
+            for line in file:
+                title, artist, year, status = line.strip().split(',')
+                songs.append([title, artist, int(year), status])
+
+    except FileNotFoundError:
+        print(f"Error: {FILENAME} not found.")
+    return songs
 
 def save_songs(songs):
     """Save songs to a csv file"""
