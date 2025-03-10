@@ -4,13 +4,38 @@ Date started: 5 March 2025
 GitHub URL: https://github.com/myoungseo/assignment1
 """
 import csv
+
 FILENAME = "songs.csv"
+MENU = """Menu:
+D - Display songs
+A - Add new song
+C - Complete a song
+Q - Quit"""
 LEARNED = "l"
 UNLEARNED = "u"
 
 def main():
     """..."""
     print("Song List 1.0 - by Choi Myeongseo")
+    songs = load_songs(FILENAME)
+    print(f"{len(songs)} songs loaded.")
+
+    print(MENU)
+    choice = input("Choice: ").upper()
+
+    while choice != 'Q':
+        if choice == 'D':
+            display_songs(songs)
+        elif choice == 'A':
+            add_songs(songs)
+        elif choice == 'C':
+            complete_songs(songs)
+        else:
+            print("Invalid menu choice")
+        choice = input("Choice: ").upper()
+    save_songs(songs)
+    print(f"{len(songs)} songs saved to {FILENAME}")
+    print("Make some music!")
 
 def load_songs(FILENAME):
     """Load songs from csv file"""
